@@ -1,4 +1,5 @@
 import'package:flutter/material.dart';
+import 'package:test_1/data/model/todo_info_model.dart';
 
 import'../data/functions/todo_functions.dart';
 import'input_screen.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 70,
                         padding:const EdgeInsets.fromLTRB(10, 0, 100, 0),
                         alignment: Alignment.center,
-                        child: Text('$index'),
+                        child: Text(todoFunctions.todoInfoData[index].name),
                       ),
                       onTap: () {
                         setState((){
@@ -66,16 +67,20 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
 
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const InputScreen()
-            ),
-            );
-          },
-            child: const Icon(Icons.plus_one_rounded),
+        floatingActionButton: InkWell(
+          child: FloatingActionButton(
+            onPressed: () async {
+              final result = await Navigator.of(context).push(MaterialPageRoute(
+               builder: (BuildContext context) => const InputScreen(),
+                ));
+                setState(() {
+                  todoFunctions.addTodoInfo(todoInfoModel: TodoInfoModel(result, false));
+                });
+                },
+
+
+              child: const Icon(Icons.plus_one_rounded),
+          ),
         ),
     );
   }

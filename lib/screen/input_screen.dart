@@ -4,7 +4,7 @@ import 'package:test_1/data/model/todo_info_model.dart';
 import '../data/functions/todo_functions.dart'; //절대 경로로 적는법?
 
 class InputScreen extends StatefulWidget {
-  const InputScreen({super.key});
+  const InputScreen({Key? key}) : super(key: key);
 
   @override
   State<InputScreen> createState() => _InputScreenState();
@@ -32,10 +32,7 @@ class _InputScreenState extends State<InputScreen> {
               child: const Text('OK'),
               onPressed: (){
                 setState(() {
-                  Navigator.pop(context);
-                  todoFunctions.addTodoInfo(todoInfoModel: TodoInfoModel(content, false));
-                  //print(todoFunctions.todoInfoData);
-                  //print(todoFunctions.todoInfoData.length);
+                  Navigator.of(context).pop(content);
                 });
               },
             )
