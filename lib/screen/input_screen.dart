@@ -10,9 +10,9 @@ class InputScreen extends StatefulWidget {
   State<InputScreen> createState() => _InputScreenState();
 }
 class _InputScreenState extends State<InputScreen> {
-
   String content="";
   var todoFunctions=TodoFunctions();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

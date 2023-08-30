@@ -27,36 +27,38 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (BuildContext context, int index) {
             return Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      child: Container(
-                        color: todoFunctions.todoInfoData[index].isDone
-                            ? Colors.blueGrey
-                            : Colors.red,
-                        height: 70,
-                        padding:const EdgeInsets.fromLTRB(10, 0, 100, 0),
-                        alignment: Alignment.center,
-                        child: Text(todoFunctions.todoInfoData[index].name),
+                Container(
+                  color: todoFunctions.todoInfoData[index].isDone
+                      ? Colors.blueGrey
+                      : Colors.red,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          child: Container(
+                          height: 70,
+                          padding:const EdgeInsets.fromLTRB(10, 0, 100, 0),
+                          alignment: Alignment.center,
+                          child: Text(todoFunctions.todoInfoData[index].name),
+                        ),
+                        onTap: () {
+                          setState((){
+                          todoFunctions.changeTodoInfoIsDone(index: index);},
+                          );
+                        }
                       ),
-                      onTap: () {
-                        setState((){
-                        todoFunctions.changeTodoInfoIsDone(index: index);},
-                        );
-                      }
-                    ),
-                    IconButton(
-                        padding:const EdgeInsets.fromLTRB(10, 0, 50, 0),
-                        onPressed:(){
-                          setState(() {
-                          todoFunctions.removeTodoInfoData(index: index);
-                        });
+                      IconButton(
+                          padding:const EdgeInsets.fromLTRB(10, 0, 50, 0),
+                          onPressed:(){
+                            setState(() {
+                            todoFunctions.removeTodoInfoData(index: index);
+                          });
 
-                        },
-                        icon:const Icon(Icons.delete)
-                    ),
-                  ],
+                          },
+                          icon:const Icon(Icons.delete)
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   height:1,
